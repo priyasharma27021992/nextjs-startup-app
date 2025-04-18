@@ -34,3 +34,34 @@ export async function fetchLatestInvoices() {
         throw new Error('Failed to fetch the latest invoices.');
     }
 }
+
+export async function fetchCardData() {
+    try {
+        const invoiceCountPromise = sql `SELECT COUNT(*) FROM invoices`;
+        const customerCountPromise = sql `SELECT COUNT(*) FROM customers`;
+        const invoicesStatusPromise = sql `SELECT
+        SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
+        SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 end) AS "pending"
+        FROM invoices`;
+        
+        const data = await Promise.all([
+            invoiceCountPromise,
+            customerCountPromise,
+            invoicesStatusPromise
+        ]);
+        const numberOfInvoices = Number(data[0][0].count ?? '0');
+        const numberOfCustomers = Number(data[1][0].count ?? '0');
+        const totalPaidInvoices = formatCurrency(data[2][0].paid ?? '0');
+        const totalPendingInvoices = formatCurrency(data[2][0].pending ?? '0');
+        return {
+            numberOfInvoices,
+            numberOfCustomers,
+            totalPaidInvoices,
+            totalPendingInvoices
+        };
+    }catch(error){
+        console.log('Database Error: ', error);
+        throw new Error('Failed to fetch the card data');
+    }
+}
+
