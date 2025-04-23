@@ -48,4 +48,4 @@ const RevenueChart = async ({ revenue }: { revenue: Revenue[] }) => {
 	);
 };
 
-export default RevenueChart;
+export { RevenueChart };

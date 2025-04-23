@@ -1,8 +1,12 @@
-import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '../lib/data';
-import { Card } from '../ui/Card';
-import { LatestInvoices } from '../ui/dashboard/latest-invoices';
-import RevenueChart from '../ui/dashboard/revenue-chart';
-import { lusitana } from '../ui/fonts';
+import {
+	fetchRevenue,
+	fetchLatestInvoices,
+	fetchCardData,
+} from '../../lib/data';
+import { Card } from '../../ui/Card';
+import { LatestInvoices } from '@/app/ui/dashboard/latest-invoices';
+import { RevenueChart } from '@/app/ui/dashboard/revenue-chart';
+import { lusitana } from '../../ui/fonts';
 import {
 	BanknotesIcon,
 	ClockIcon,
