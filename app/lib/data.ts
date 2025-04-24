@@ -6,7 +6,7 @@ const sql = postgres(process.env.POSTGRES_URL!, {ssl: 'require'});
 
 export async function fetchRevenue(){
     try{
-        await new Promise((resolve) => setTimeout(resolve, 30000));
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         const data = await sql<Revenue[]>`SELECT * from revenue`;
         return data;
     }catch(error){
@@ -17,7 +17,7 @@ export async function fetchRevenue(){
 
 export async function fetchLatestInvoices() {
     try{
-        await new Promise((resolve) => setTimeout(resolve, 30000));
+        // await new Promise((resolve) => setTimeout(resolve, 30000));
         const data = await sql<LatestInvoiceRaw[]>`
         SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
         FROM invoices

@@ -1,14 +1,11 @@
-import { LatestInvoice } from '@/app/lib/definitions';
 import { lusitana } from '../fonts';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
+import { fetchLatestInvoices } from '@/app/lib/data';
 
-const LatestInvoices = ({
-	latestInvoices,
-}: {
-	latestInvoices: LatestInvoice[];
-}) => {
+const LatestInvoices = async () => {
+	const latestInvoices = await fetchLatestInvoices();
 	return (
 		<div className='w-full md:col-span-4'>
 			<h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
