@@ -1,3 +1,5 @@
+import { fetchFilteredInvoices } from '@/app/lib/data';
+
 export const InvoicesTable = ({
 	query,
 	currentPage,
@@ -5,5 +7,12 @@ export const InvoicesTable = ({
 	query: string;
 	currentPage: number;
 }) => {
-	return <div></div>;
+	const invoices = fetchFilteredInvoices(query, currentPage);
+	return (
+		<div className='mt-6 flow-root'>
+			<div className='inline-block min-w-full align-middle'>
+				<div className='rounded-lg'></div>
+			</div>
+		</div>
+	);
 };
